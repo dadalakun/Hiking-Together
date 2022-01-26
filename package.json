@@ -1,0 +1,12 @@
+{
+  "name": "mountain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dadalakun/mountain.git",
+  "author": "dadalakun <dadalakun25@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn server"
+  }
+}
