@@ -1,4 +1,4 @@
-import { getUserByName, getUserById } from "../utils";
+import { getUserByName, getUserById } from "../utils.js";
 
 const Query = {
     async me(parent, args, { db, userId }, info) {

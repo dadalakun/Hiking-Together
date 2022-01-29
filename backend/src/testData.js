@@ -1,5 +1,5 @@
-import db from "./models"
-import { newUser, newPost } from './utils';
+import db from "./models/index.js"
+import { newUser, newPost } from './utils.js';
 
 const initposts = [
     {

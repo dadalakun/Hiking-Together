@@ -1,4 +1,4 @@
-import mongo from './src/mongo';
+import mongo from './src/mongo.js';
 import server from './src/server.js';
 
 mongo.connect();
