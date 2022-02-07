@@ -14,7 +14,7 @@ import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 const Post = ({ isLogIn, post, setLabel, handleOpenDetail }) => {
     return (
         <Card
-            sx={{ minHeight: "16em" }}
+            sx={{ /*minHeight: "0em", border: "1px solid red"*/ }}
         >
             <CardActionArea
                 component="a"
@@ -46,7 +46,7 @@ const Post = ({ isLogIn, post, setLabel, handleOpenDetail }) => {
                     subheader={"發布於: " + moment(post.postTime).format("YYYY-MM-DD h:mm")}
                     sx={{ pb: 0 }}
                 />
-                <CardContent >
+                <CardContent sx={{ /*border: "1px solid blue"*/ }} >
                     <Typography variant="h5" component="div" gutterBottom>
                         {post.title}
                     </Typography>
