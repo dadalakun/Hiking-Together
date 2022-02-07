@@ -28,6 +28,7 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
+
 const SignUpModal = ({ visible, handleClose, handlePrev, signup, setMessage }) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");

@@ -46,6 +46,12 @@ const useAuth = () => {
 
     const signup = async (name, email, password) => {
         try {
+            if (!validateEmail(email)) {
+                throw new Error("Email 格式錯誤");
+            }
+            if (!validatePwd(password)) {
+                throw new Error("密碼長度需大於等於 6");
+            }
             await signUp({
                 variables: {
                     name,
@@ -57,6 +63,16 @@ const useAuth = () => {
             throw e;
         }
     }
+
+    const validateEmail = (email) => {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    const validatePwd = (password) => {
+        return password.length > 5;
+    }
+
 
     return {
         auth,

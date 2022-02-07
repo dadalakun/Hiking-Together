@@ -102,17 +102,17 @@ const initusers = [
     {
         name: "Mumi",
         email: "mumi@gmail.com",
-        password: "mumi"
+        password: "mumimumi"
     },
     {
         name: "Mark",
         email: "mark@gmail.com",
-        password: "mark"
+        password: "markmark"
     },
     {
         name: "David",
         email: "david@gmail.com",
-        password: "david"
+        password: "daviddavid"
     }
 ];
 
