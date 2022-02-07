@@ -27,6 +27,9 @@ const usePost = () => {
     // Add or remove the post from "關注行程"
     const setLabel = async (postId, idx) => {
         try {
+            const newposts = JSON.parse(JSON.stringify(posts));
+            newposts[idx].label = !posts[idx].label;
+            setPosts(newposts);
             // If labeled, unlabel it
             if (posts[idx].label) {
                 await unlabelpost({
@@ -42,9 +45,7 @@ const usePost = () => {
                     }
                 });
             }
-            const newposts = JSON.parse(JSON.stringify(posts));
-            newposts[idx].label = !posts[idx].label;
-            setPosts(newposts);
+
         } catch (e) {
             throw e;
         }
