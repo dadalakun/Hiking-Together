@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "NODE_ENV=production node dist/index.js",
-    "start:dev": "nodemon ./index.js --ext js,graphql --exec",
-    "build": "babel src -d dist"
+    "start:dev": "nodemon ./index.js --ext js,graphql --exec"
   },
   "dependencies": {
     "@apollo/server": "^4.9.4",
