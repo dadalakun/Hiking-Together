@@ -17,7 +17,7 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Zoom ref={ref} {...props} />;
 });
 
-const PostDetail = ({ visible, handleClose, removePost, updatePost,
+const PostDetail = ({ visible, handleClose, removePost, updatePost, t,
     post = {
         id: "", title: "", genre: [], startTime: "", endTime: "",
         peopleOrigin: 0, peopleWant: 0, detail: "", otherInfo: "",
@@ -36,7 +36,7 @@ const PostDetail = ({ visible, handleClose, removePost, updatePost,
             <DialogTitle sx={{ textAlign: "center", fontSize: 30, my: 1 }}>{post.title}</DialogTitle>
             <DialogContent sx={{ overflow: "hidden" }}>
                 <Stack direction="row" spacing={1} alignItems="center">
-                    <Typography variant="h6">{(post.genre.length > 0) ? "類型 : " : " "}</Typography>
+                    <Typography variant="h6">{(post.genre.length > 0) ? t("tags") + " : " : " "}</Typography>
                     {post.genre.map((e, idx) => (
                         <Chip
                             color="primary" size="small" variant="outlined"
@@ -47,21 +47,21 @@ const PostDetail = ({ visible, handleClose, removePost, updatePost,
             </DialogContent>
             <DialogContent sx={{ overflow: "hidden" }} dividers>
                 <Typography variant="h6">
-                    {"時間 : " + moment(post.startTime).format("YYYY-MM-DD")
+                    { t("time") + " : " + moment(post.startTime).format("YYYY-MM-DD")
                         + " ~ " + moment(post.endTime).format("YYYY-MM-DD")}
                 </Typography>
                 <Typography variant="h6">
-                    {"內建 : " + post.peopleOrigin + " 人 / " +
-                        "徵求 : " + post.peopleWant + " 人"}
+                    { t("label_people_have") + " : " + post.peopleOrigin + " 人 / " +
+                        t("label_people_need") + " : " + post.peopleWant + " 人"}
                 </Typography>
             </DialogContent>
             <DialogContent sx={{ maxHeight: "330px", overflow: "auto" }}>
-                <Typography variant="h5" gutterBottom>行程細節</Typography>
+                <Typography variant="h5" gutterBottom>{t("trip_detail")}</Typography>
                 <Box sx={{ mt: 2, mb: 2 }}>
                     <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>{post.detail}</Typography>
                 </Box>
                 <Divider variant="middle" />
-                <Typography variant="h5" gutterBottom sx={{ mt: 2 }}>{"聯絡資料 & 備註"}</Typography>
+                <Typography variant="h5" gutterBottom sx={{ mt: 2 }}>{t("progress_contact_note")}</Typography>
                 <Box sx={{ mt: 2, mb: 2 }}>
                     <Typography variant="h6" sx={{ whiteSpace: 'pre-line' }}>{post.otherInfo}</Typography>
                 </Box>
@@ -78,7 +78,7 @@ const PostDetail = ({ visible, handleClose, removePost, updatePost,
                       }}
                       sx={{ display: (post.myPost) ? '' : 'none' }}
                     >
-                        刪除行程
+                        {t("remove_trip_button")}
                     </Button>
                     <Button
                       variant="contained"
@@ -89,7 +89,7 @@ const PostDetail = ({ visible, handleClose, removePost, updatePost,
                       }}
                       sx={{ display: (post.myPost) ? '' : 'none' }}
                     >
-                        修改行程
+                        {t("modify_trip_button")}
                     </Button>
                 </Stack>
             </DialogContent>

@@ -16,20 +16,6 @@ const MenuProps = {
     },
 };
 
-const names = [
-    '百岳',
-    '郊山',
-    '中級山',
-    '探勘路線',
-    '縱走',
-    '單攻',
-    '健行',
-    '揪人',
-    '同行',
-    '共乘',
-    '包車',
-];
-
 function getStyles(name, personName, theme) {
     return {
         fontWeight:
@@ -39,8 +25,20 @@ function getStyles(name, personName, theme) {
     };
 }
 
-const SelectGenre = ({ draft, setDraft }) => {
+const SelectGenre = ({ draft, setDraft, t }) => {
     const theme = useTheme();
+    const names = [
+        t("tag_3000m_plus"),
+        t("tag_1500m_plus"),
+        t("tag_500m_plus"),
+        t("tag_advanture"),
+        t("tag_several_days"),
+        t("tag_one_day"),
+        t("tag_hiking"),
+        t("tag_climb"),
+        t("tag_freeload"),
+        t("tag_charter")
+    ];
 
     const handleChange = (event) => {
         const {

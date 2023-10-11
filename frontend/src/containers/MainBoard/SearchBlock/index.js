@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 
 import Box from '@mui/material/Box';
@@ -10,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+
 
 const StyledBox = styled(Box)`
   display: flex;
@@ -23,6 +25,8 @@ const StyledBox = styled(Box)`
 const SearchBlock = ({ searchPost, setMessage, refetch }) => {
     const [searchBy, setSearchBy] = useState("title");
     const [target, setTarget] = useState("")
+    const { t } = useTranslation();
+
     useEffect(() => {
         // click "all" radio to fetch all posts
         if (searchBy === "all") {
@@ -55,7 +59,7 @@ const SearchBlock = ({ searchPost, setMessage, refetch }) => {
                 >
                     <InputBase
                         sx={{ ml: 1, flex: 1 }}
-                        placeholder="搜尋"
+                        placeholder={t('search_placeholder')}
                         inputProps={{ 'aria-label': 'search bar' }}
                         value={target}
                         onChange={(e) => setTarget(e.target.value)}
@@ -69,19 +73,19 @@ const SearchBlock = ({ searchPost, setMessage, refetch }) => {
                 <RadioGroup row aria-label="search" value={searchBy} onChange={handleChange} >
                     <FormControlLabel
                         value="all" control={<Radio color="secondary" />}
-                        label="全部"
+                        label={t('all_radio')}
                     />
                     <FormControlLabel
                         value="title" control={<Radio />}
-                        label="標題"
+                        label={t('title_radio')}
                     />
                     <FormControlLabel
                         value="tag" control={<Radio />}
-                        label="Tag"
+                        label={t('tag_radio')}
                     />
                     <FormControlLabel
                         value="author" control={<Radio />}
-                        label="用戶"
+                        label={t('user_radio')}
                     />
                 </RadioGroup>
             </StyledBox>

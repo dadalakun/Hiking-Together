@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -25,21 +26,22 @@ function App() {
   const { auth, user, login, logout, signup } = useAuth();
   const { posts, refetch, setLabel, removePost, searchPost } = usePost();
   const [message, setMessage] = useState({open: false, msg: "", type: "error"});
+  const { t } = useTranslation();
 
   // Logout
   const handleLogout = () => {
     logout();
     refetch();
-    setMessage({open: true, msg: `已登出。`, type: "success"});
+    setMessage({open: true, msg: t("msg_signout"), type: "success"});
   }
-  // Click "登入" button on the top bar
+  // Click "Login" button on the top bar
   const handleClickOpen = () => { setLoginModalVisible(true) }
 
   // Login
   const handleLogin = async (email, pwd) => {
     try {
       await login(email, pwd);
-      setMessage({open: true, msg: `登入成功，現在可以發布自己的行程。`, type: "success"});
+      setMessage({open: true, msg: t("msg_signin_success"), type: "success"});
       refetch();
       handleClose();
     } catch (e) {

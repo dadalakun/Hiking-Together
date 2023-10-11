@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/react-hooks';
 
 import AppBar from '@mui/material/AppBar';
@@ -20,6 +21,7 @@ import {
 const Bar = ({ isLogIn, user, handleClickOpen, logout }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [testToken] = useMutation(TEST_TOKEN_MUTATION);
+    const { t } = useTranslation();
 
     useEffect(() => {
         setAnchorEl(null);
@@ -89,7 +91,7 @@ const Bar = ({ isLogIn, user, handleClickOpen, logout }) => {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={logout}>登出</MenuItem>
+                                <MenuItem onClick={logout}>{t("logout")}</MenuItem>
                             </Menu>
                         </>
                         :
@@ -100,7 +102,7 @@ const Bar = ({ isLogIn, user, handleClickOpen, logout }) => {
                             variant="outlined"
                             sx={{ textTransform: "none" }}
                         >
-                            登入
+                            {t('login')}
                         </Button>
                     }
 

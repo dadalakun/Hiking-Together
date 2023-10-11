@@ -11,7 +11,7 @@ import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import BookmarkOutlinedIcon from '@mui/icons-material/BookmarkOutlined';
 
-const Post = ({ isLogIn, post, setLabel, handleOpenDetail }) => {
+const Post = ({ isLogIn, post, setLabel, handleOpenDetail, t }) => {
     return (
         <Card
             sx={{ /*minHeight: "0em", border: "1px solid red"*/ }}
@@ -43,7 +43,7 @@ const Post = ({ isLogIn, post, setLabel, handleOpenDetail }) => {
                             : <></>
                     }
                     title={post.author}
-                    subheader={"發布於: " + moment(post.postTime).format("YYYY-MM-DD h:mm")}
+                    subheader={t("post_time") + ": " + moment(post.postTime).format("YYYY-MM-DD h:mm")}
                     sx={{ pb: 0 }}
                 />
                 <CardContent sx={{ /*border: "1px solid blue"*/ }} >
@@ -59,13 +59,13 @@ const Post = ({ isLogIn, post, setLabel, handleOpenDetail }) => {
                         ))}
                     </Stack>
                     <Typography sx={{ fontSize: 14, mt: 1 }} color="text.secondary">
-                        {"出發 " + moment(post.startTime).format("YYYY-MM-DD")}
+                        {t("depart") + " " + moment(post.startTime).format("YYYY-MM-DD")}
                     </Typography>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        {"結束 " + moment(post.endTime).format("YYYY-MM-DD")}
+                        {t("end") + " " + moment(post.endTime).format("YYYY-MM-DD")}
                     </Typography>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        {`徵求 ${post.peopleWant} 人`}
+                        {t("people") + `: ${post.peopleWant}`}
                     </Typography>
                 </CardContent>
             </CardActionArea>

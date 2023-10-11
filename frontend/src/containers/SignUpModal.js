@@ -1,4 +1,5 @@
 import { forwardRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 
 import Button from '@mui/material/Button';
@@ -36,6 +37,7 @@ const SignUpModal = ({ visible, handleClose, handlePrev, signup, setMessage }) =
     const [missName, setMissName] = useState(false);
     const [missEmail, setMissEmail] = useState(false);
     const [missPwd, setMissPwd] = useState(false);
+    const { t } = useTranslation();
 
     const handleSignup = async () => {
         // If the signup information not provided 
@@ -89,7 +91,7 @@ const SignUpModal = ({ visible, handleClose, handlePrev, signup, setMessage }) =
                         setMissName(false);
                     }}
                     error={missName && !name}
-                    helperText={missName ? "請填入用戶名稱" : " "}
+                    helperText={missName ? t('helpertext_enter_usrname') : " "}
                     sx={{ mb: "1em", width: "75%" }}
                 />
                 {/* Email */}
@@ -101,7 +103,7 @@ const SignUpModal = ({ visible, handleClose, handlePrev, signup, setMessage }) =
                         setMissEmail(false);
                     }}
                     error={missEmail && !email}
-                    helperText={missEmail ? "請填入電子郵件" : " "}
+                    helperText={missEmail ? t('helpertext_enter_email') : " "}
                     sx={{ mb: "1em", width: "75%" }}
                 />
                 {/* Password */}
@@ -113,7 +115,7 @@ const SignUpModal = ({ visible, handleClose, handlePrev, signup, setMessage }) =
                         setMissPwd(false);
                     }}
                     error={missPwd && !pwd}
-                    helperText={missPwd ? "請填入用戶密碼" : " "}
+                    helperText={missPwd ? t('helpertext_enter_password') : " "}
                     sx={{ mb: "1em", width: "75%" }}
                 />
 
@@ -125,7 +127,7 @@ const SignUpModal = ({ visible, handleClose, handlePrev, signup, setMessage }) =
                         sx={{ width: "45%", textTransform: "none" }}
                         startIcon={<KeyboardBackspaceIcon />}
                     >
-                        登入
+                        {t("signin_button")}
                     </Button>
                     <Button
                         variant="contained"
@@ -136,7 +138,7 @@ const SignUpModal = ({ visible, handleClose, handlePrev, signup, setMessage }) =
                             '&:hover': { backgroundColor: "#ad1457" },
                         }}
                     >
-                        註冊
+                        {t("signup_button")}
                     </Button>
                 </StyledStack>
             </StyledDialogContent>

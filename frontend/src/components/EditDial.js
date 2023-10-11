@@ -1,15 +1,19 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import CreateTwoToneIcon from '@mui/icons-material/CreateTwoTone';
 
-const actions = [
-    { icon: <CreateTwoToneIcon />, name: '發布行程' }
-];
+
 
 const EditDial = ({ isLogIn, clickNewPost }) => {
     const [open, setOpen] = useState(false);
+    const { t } = useTranslation();
+    const actions = [
+        { icon: <CreateTwoToneIcon />, name: t("new_trip") }
+    ];
+    
     const handleOpen = (e) => {
         if(e.type  === "mouseenter") {
             setOpen(true);

@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -20,6 +21,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 const EditPostModals = ({ visible, handleClose, draft, setDraft, handleSubmit }) => {
     const [activeStep, setActiveStep] = useState(0);
     const [missTitle, setMissTitle] = useState(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         setActiveStep(0);
@@ -40,20 +42,20 @@ const EditPostModals = ({ visible, handleClose, draft, setDraft, handleSubmit })
     const steps = [
         <StepOne
             draft={draft} setDraft={setDraft}
-            missTitle={missTitle} setMissTitle={setMissTitle}
+            missTitle={missTitle} setMissTitle={setMissTitle} t={t}
         />,
         <StepTwo
-            draft={draft} setDraft={setDraft}
+            draft={draft} setDraft={setDraft} t={t}
         />,
         <StepThree
-            draft={draft} setDraft={setDraft}
+            draft={draft} setDraft={setDraft} t={t}
         />,
     ];
 
     const stepLabel = [
-        "名稱 & 人數",
-        "時間 & 細節",
-        "聯絡 & 備註",
+        t("progress_title_headcount"),
+        t("progress_time_detail"),
+        t("progress_contact_note")
     ];
 
     return (
@@ -82,7 +84,7 @@ const EditPostModals = ({ visible, handleClose, draft, setDraft, handleSubmit })
                     onClick={(activeStep === 0) ? handleClose : handleBack}
                     sx={{  textTransform: "none" }}
                 >
-                    {(activeStep === 0) ? "取消" : "上一步"}
+                    {(activeStep === 0) ? t("cancel_button") : t("prev_button")}
                 </Button>
                 <Button
                     variant="contained"
@@ -93,7 +95,7 @@ const EditPostModals = ({ visible, handleClose, draft, setDraft, handleSubmit })
                         '&:hover': { backgroundColor: (activeStep === 2) ? "#ad1457" : null}
                     }}
                 >
-                    {(activeStep === 2) ? "送出" : "下一步"}
+                    {(activeStep === 2) ? t("send_button") : t("next_button")}
                 </Button>
             </DialogActions>
         </ Dialog>

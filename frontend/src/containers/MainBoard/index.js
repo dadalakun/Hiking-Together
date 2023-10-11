@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 import moment from "moment";
 
@@ -71,6 +72,7 @@ const MainBoard = ({ isLogIn, user, posts, setLabel, removePost, refetch, search
         updatePost,
         initialize
     } = useDraft(user);
+    const { t } = useTranslation();
 
     const handleSwitchTab = (event, newValue) => {
         setTab(newValue);
@@ -87,7 +89,7 @@ const MainBoard = ({ isLogIn, user, posts, setLabel, removePost, refetch, search
             await removePost(openpostidx);
             setOpenpostidx(null);
             refetch();
-            setMessage({ open: true, msg: "刪除成功。", type: "success" });
+            setMessage({ open: true, msg: t("msg_post_deleted"), type: "success" });
         } catch (e) {
             setMessage({ open: true, msg: e.message, type: "error" });
         }
@@ -118,7 +120,7 @@ const MainBoard = ({ isLogIn, user, posts, setLabel, removePost, refetch, search
             try {
                 await createPost();
                 await refetch({ type: "", query: ""});
-                setMessage({ open: true, msg: "發布成功。", type: "success" });
+                setMessage({ open: true, msg: t("msg_post_created"), type: "success" });
             } catch (e) {
                 console.log(e.message);
             } finally {
@@ -128,7 +130,7 @@ const MainBoard = ({ isLogIn, user, posts, setLabel, removePost, refetch, search
         // Update the post based on existed data
             try {
                 await updatePost();
-                setMessage({ open: true, msg: "修改成功。", type: "success" });
+                setMessage({ open: true, msg: t("msg_post_modified"), type: "success" });
             } catch (e) {
                 setMessage({ open: true, msg: e.message, type: "error" });
             } finally {
@@ -143,14 +145,14 @@ const MainBoard = ({ isLogIn, user, posts, setLabel, removePost, refetch, search
                     
                     <ToolBar sx={{ borderBottom: 1, borderColor: 'divider'}}>
                         <Tabs
-                          value={tab}
-                          onChange={handleSwitchTab}
-                          variant="scrollable"
-                          scrollButtons="auto"
+                        value={tab}
+                        onChange={handleSwitchTab}
+                        variant="scrollable"
+                        scrollButtons="auto"
                         >
-                            <Tab icon={<HikingIcon sx={{ fontSize: 20 }} />} label="全部行程" value={ALL} />
-                            <Tab icon={<LabelIcon sx={{ fontSize: 20 }} />} label="關注行程" value={LABEL} disabled={!isLogIn} />
-                            <Tab icon={<FaceIcon sx={{ fontSize: 20 }} />} label="我的行程" value={MY} disabled={!isLogIn} />
+                            <Tab icon={<HikingIcon sx={{ fontSize: 20 }} />} label={t('all_trip')} value={ALL} />
+                            <Tab icon={<LabelIcon sx={{ fontSize: 20 }} />} label={t('saved_trip')} value={LABEL} disabled={!isLogIn} />
+                            <Tab icon={<FaceIcon sx={{ fontSize: 20 }} />} label={t('my_trip')} value={MY} disabled={!isLogIn} />
                         </Tabs>
                         {/* Search bar & type selector */}
                         <SearchBlock
@@ -173,6 +175,7 @@ const MainBoard = ({ isLogIn, user, posts, setLabel, removePost, refetch, search
                                         setLabel={() => setLabel(post.id, idx)}
                                         handleOpenDetail={() => openDetail(idx)}
                                         key={"post" + post.id}
+                                        t={t}
                                     />
                                 </Grid>
                             ))}
@@ -193,6 +196,7 @@ const MainBoard = ({ isLogIn, user, posts, setLabel, removePost, refetch, search
                     post={posts[openpostidx]}
                     removePost={handleRemovePost}
                     updatePost={handleClickUpdatePost}
+                    t={t}
                 />
                 {/* Only appears when after user login */}
                 <EditDial

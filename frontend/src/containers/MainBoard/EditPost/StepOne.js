@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import DialogContent from '@mui/material/DialogContent';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
@@ -19,35 +18,35 @@ const StyledStack = styled(Stack)`
   margin-left: 1em;
 `;
 
-const StepOne = ({ draft, setDraft, missTitle, setMissTitle }) => {
+const StepOne = ({ draft, setDraft, missTitle, setMissTitle, t }) => {
 
     return (
         <DialogContent>
-            <Typography variant="h5">行程名稱</Typography>
+            <Typography variant="h5">{t("trip_name")}</Typography>
             <TextField
-                placeholder="例 : 奇萊主北"
+                placeholder={t("trip_name_placeholder")}
                 value={draft.title}
                 onChange={(e) => {
                     setMissTitle(false);
                     setDraft({ ...draft, title: e.target.value });
                 }}
                 error={missTitle && !draft.title}
-                helperText={missTitle ? "請填入行程名稱" : " "}
+                helperText={missTitle ? t("helpertext_enter_trip_name") : " "}
                 sx={{ mt: "1em", ml: "1em" }}
             />
-            <Typography variant="h5">類型標籤(非必填)</Typography>
+            <Typography variant="h5">{t("tags")}</Typography>
             <Box
                 sx={{ mt: "1em", ml: "1em", minHeight: "5em" }}
             >
-                <SelectGenre draft={draft} setDraft={setDraft} />
+                <SelectGenre draft={draft} setDraft={setDraft} t={t} />
             </Box>
-            <Typography variant="h5">人數</Typography>
+            <Typography variant="h5">{t("headcount") + " ? (*)"}</Typography>
             <StyledStack direction="row">
                 <FormControl sx={{ width: '10ch', mr: '3em' }}>
-                    <InputLabel>內建</InputLabel>
+                    <InputLabel>{t("label_people_have")}</InputLabel>
                     <Select
                         value={draft.peopleOrigin}
-                        label="內建"
+                        label={t("label_people_have")}
                         onChange={(e) => setDraft({ ...draft, peopleOrigin: e.target.value })}
                     >
                         {
@@ -58,10 +57,10 @@ const StepOne = ({ draft, setDraft, missTitle, setMissTitle }) => {
                     </Select>
                 </FormControl>
                 <FormControl sx={{ width: '10ch' }}>
-                    <InputLabel>尚缺</InputLabel>
+                    <InputLabel>{t("label_people_need")}</InputLabel>
                     <Select
                         value={draft.peopleWant}
-                        label="尚缺"
+                        label={t("label_people_need")}
                         onChange={(e) => setDraft({ ...draft, peopleWant: e.target.value })}
                     >
                         {

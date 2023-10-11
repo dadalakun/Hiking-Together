@@ -1,4 +1,5 @@
 import { forwardRef, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from "styled-components";
 
 import Button from '@mui/material/Button';
@@ -38,6 +39,7 @@ const LogInModal = ({ visible, handleClose, login, handleClickSignup, setMessage
   const [showPwd, setShowPwd] = useState(false);
   const [missEmail, setMissEmail] = useState(false);
   const [missPwd, setMissPwd] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (visible) {
@@ -131,7 +133,7 @@ const LogInModal = ({ visible, handleClose, login, handleClickSignup, setMessage
             onClick={handleClickSignup}
             sx={{ width: "45%", textTransform: "none" }}
           >
-            註冊
+            {t("signup_button")}
           </Button>
           <Button
             variant="contained"
@@ -143,7 +145,7 @@ const LogInModal = ({ visible, handleClose, login, handleClickSignup, setMessage
             }}
             endIcon={<LoginRoundedIcon />}
           >
-            登入
+            {t("signin_button")}
           </Button>
         </StyledStack>
       </StyledDialogContent>
