@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon ./index.js --ext js,graphql --exec babel-node"
+    "start": "NODE_ENV=production node dist/index.js",
+    "start:dev": "nodemon ./index.js --ext js,graphql --exec babel-node",
+    "build": "babel src -d dist"
   },
   "dependencies": {
     "@apollo/server": "^4.9.4",
