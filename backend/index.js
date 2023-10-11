@@ -1,9 +1,33 @@
 import mongo from './src/mongo.js';
 import server from './src/server.js';
+import { startStandaloneServer } from '@apollo/server/standalone';
 
-mongo.connect();
-const port = 5001;
+// db
+import db from './src/models';
+// utils
+import { getUserId } from './src/utils';
 
-server.start({ port }, () => {
-  console.log(`The server is up on port ${port}!`);
-});
+import dotenv from 'dotenv-defaults'
+
+const startServer = async () => {
+  mongo.connect();
+  dotenv.config();
+  const { url } = await startStandaloneServer(server, {
+    listen: { port: 5001 },
+    context: async ({ req, res }) => {
+      return {
+          db,
+          userId:
+              req && req.headers.authorization
+                  ? getUserId(process.env.SECRET, req)
+                  : null,
+          SECRET: process.env.SECRET,
+          SALT_ROUNDS: Number(process.env.SALT_ROUNDS),
+      };
+  }
+  });
+
+  console.log(`🚀  Server ready at: ${url}`);
+}
+
+startServer();

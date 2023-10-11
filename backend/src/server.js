@@ -1,37 +1,19 @@
-import { GraphQLServer } from 'graphql-yoga';
-
+import { ApolloServer } from '@apollo/server';
+import typeDefs from './schema';
 // resolvers
 import Query from './resolvers/Query';
 import Mutation from './resolvers/Mutation';
 import User from './resolvers/User'
 import DateResolver from "./resolvers/Date.js";
-// db
-import db from './models';
-// utils
-import { getUserId } from './utils';
 
-import dotenv from 'dotenv-defaults'
-
-const server = new GraphQLServer({
-    typeDefs: './src/schema.graphql',
+const server = new ApolloServer({
+    typeDefs: typeDefs,
     resolvers: {
         Query,
         Mutation,
         User,
         Date: DateResolver,
     },
-    context: ({ request }) => {
-        dotenv.config();
-        return {
-            db,
-            userId:
-                request && request.headers.authorization
-                    ? getUserId(process.env.SECRET, request)
-                    : null,
-            SECRET: process.env.SECRET,
-            SALT_ROUNDS: Number(process.env.SALT_ROUNDS),
-        };
-    },
-}); 
+});
 
 export default server;

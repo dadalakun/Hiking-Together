@@ -129,7 +129,7 @@ const postInit = async (salt) => {
         const { user: david } = await newUser(
             db, initusers[2].name, initusers[2].email, initusers[2].password, salt);
 
-        console.log("Database(users) inialized!");
+        console.log("Database(users) initialized!");
 
         await db.Post.deleteMany({});
         await newPost(db, mumi.id, initposts[0]);
@@ -139,7 +139,7 @@ const postInit = async (salt) => {
         await newPost(db, david.id, initposts[4]);
         await newPost(db, david.id, initposts[5]);
         
-        console.log("Database(posts) inialized!");
+        console.log("Database(posts) initialized!");
     }
 };
 
