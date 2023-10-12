@@ -3,9 +3,9 @@ import server from './src/server.js';
 import { startStandaloneServer } from '@apollo/server/standalone';
 
 // db
-import db from './src/models';
+import db from './src/models/index.js';
 // utils
-import { getUserId } from './src/utils';
+import { getUserId } from './src/utils.js';
 
 import dotenv from 'dotenv-defaults'
 

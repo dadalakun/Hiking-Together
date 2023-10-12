@@ -1,12 +1,12 @@
 {
-  "name": "mountain",
+  "name": "Hiking-Together",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/dadalakun/mountain.git",
+  "repository": "https://github.com/dadalakun/Hiking-Together.git",
   "author": "dadalakun <dadalakun25@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "cd frontend && yarn start",
-    "server": "cd backend && yarn server"
+    "server": "cd backend && yarn start:dev"
   }
 }
