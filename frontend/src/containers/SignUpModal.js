@@ -49,7 +49,7 @@ const SignUpModal = ({ visible, handleClose, handlePrev, signup, setMessage }) =
         }
         try {
             await signup(name, email, pwd);
-            setMessage({ open: true, msg: "註冊成功", type: "success" });
+            setMessage({ open: true, msg: "Signup Successful", type: "success" });
             localStorage.setItem("email", email);
             handlePrev();
         } catch (e) {
