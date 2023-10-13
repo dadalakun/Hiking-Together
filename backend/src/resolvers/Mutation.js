@@ -3,17 +3,17 @@ import { getUserByEmail, getUserByName, getUserById, newUser, newPost, validateU
 const Mutation = {
     async signup (parent, { name, email, password }, { db, SALT_ROUNDS }, info) {
         if (await getUserByName(db, name)) {
-            throw new Error(`用戶名 (${name}) 已存在.`);
+            throw new Error(`User Name (${name}) already been used.`);
         }
         if (await getUserByEmail(db, email)) {
-            throw new Error(`電子郵件 (${email}) 已註冊.`);
+            throw new Error(`Email (${email}) already been used.`);
         }
         return newUser(db, name, email, password, SALT_ROUNDS);
     },
     async login (parent, { email, password }, { db, SECRET }, info) {
         const user = await getUserByEmail(db, email);
         if (!user) {
-            throw new Error(`電子郵件 (${email}) 未註冊.`);
+            throw new Error(`Email (${email}) is not registered.`);
         }
         return validateUser(password, user, SECRET);
     },

@@ -47,10 +47,10 @@ const useAuth = () => {
     const signup = async (name, email, password) => {
         try {
             if (!validateEmail(email)) {
-                throw new Error("Email 格式錯誤");
+                throw new Error("Wrong Email format");
             }
             if (!validatePwd(password)) {
-                throw new Error("密碼長度需大於等於 6");
+                throw new Error("Password should longer than 6");
             }
             await signUp({
                 variables: {
