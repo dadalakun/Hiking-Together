@@ -1,119 +1,144 @@
 # Hiking Together
 
-## 1. Introduction
+- [Demo](#Demo)
+- [Introduction](#Introduction)
+- [Getting Started](#Getting-Started)
+- [Tools Used](#Tools-Used)
+- [Structure](#Structure)
+
+## Demo
+Check out the live demo (Sign in to try all features):
+[**Hiking Together Live Demo**](http://3.143.106.247)
+
+<img src="https://i.imgur.com/ByNxoou.png">
+
+## Introduction
 
 With the popularity of hiking activities and the increasing difficulty of traveling abroad in recent years, more and more people are venturing into the mountains. However, if you're alone, you may encounter various inconveniences such as high fuel costs, difficulty in finding enough people to share transportation costs, or the lack of assistance in case of accidents while hiking.
 
 As a result, whether it's to find companions, share transportation expenses, or ensure one's safety, many people turn to social media platforms. For instance, they post hiking invitations on platforms like [PTT Hiking](https://www.ptt.cc/bbs/Hiking/index.html), use text messages in Line, or make posts in Facebook groups. However, these existing methods are not specifically designed for "grouping" or "hiking", each has its own drawbacks, and they attract different user demographics.
 
-Therefore, the original intention behind developing Hiking Together is that, at least in Taiwan, there still isn't a dedicated group-finding platform specifically designed for hiking that serves everyone. Additionally, given my personal involvement in hiking activities, I wanted to approach this from the perspective of a fellow hiker who often struggles to find companions. Ultimately, the goal was to design a user-friendly online platform.
+Therefore, the original intention behind **Hiking Together** is that, at least in Taiwan, there still isn't a dedicated group-finding platform specifically designed for hiking that serves everyone. Additionally, given my personal involvement in hiking activities, I wanted to approach this from the perspective of a fellow hiker who often struggles to find companions. Ultimately, the goal was to design a user-friendly online platform.
 
-## 2. Run locally
-<img src="https://i.imgur.com/FqhjKIF.png" width="400" >
+## Getting Started
 
-#### Install dependencies
-``` bash
-> cd frontend
-> yarn install
-> cd ../backend
-> yarn install
-```
-#### Set up env variables file under backend/
-``` bash
-> cd backend
-> mkdir .env
-```
-*`.env`*：
-``` bash=
-# Database url
-MONGO_URL = '${mongoose link}'
-# Salt 
-SECRET = 'MumiShinDonDon'
-SALT_ROUNDS = 8
-```
-#### Leave backend/, launch backend program
-``` bash
-> yarn server
-```
-<img src="https://i.imgur.com/0IU0rH2.png" width="400" >
+These instructions will help you set up a local instance of Hiking Together for development and testing purposes.
 
-#### Use anotehr terminal, launch frontend program
-``` bash
-> yarn start
-```
-#### If success, the main panel will open
-<img src="https://i.imgur.com/med8Bhs.png" width="600" >
+### Prerequisites
 
-#### There are some text cases written in *`backend/src/testData.js`*, you can go to *`backend/src/mongo.js`* and uncomment the last `postInit(...);`. Backend process will launch again automatically.
-<img src="https://i.imgur.com/oeVKeKf.png" width="400" >
+- Node.js v18.18.0
+- MongoDB Atlas account
+- Docker and Docker-Compose (optional)
 
-#### Comment back `postInit(...);` if you don't want your data to be reset every time.
-#### Don't forget to use *`$ yarn start`* to reboot the frontend process, then you can see the test cases:
-<img src="https://i.imgur.com/7kvodhy.png" width="600" >
+### Installation
 
-#### The test cases will create three users for you, you can login to test every feature：
-``` json
-users = [
-    {
-        email: "mumi@gmail.com",
-        password: "mumimumi"
-    },
-    {
-        email: "mark@gmail.com",
-        password: "markmark"
-    },
-    {
-        email: "david@gmail.com",
-        password: "daviddavid"
-    },
-]
-```
-* p.s. Every time we use the test cases to create a new user, its userid will be different, so you may want to sign out and sign in again, making sure your browser getting the new token generated from new userid.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/dadalakun/Hiking-Together.git
+    ```
 
-## 3. Backend introduction
-### Main structure
-#### Use graphql-yoga to launch a GraphQLServer, taking care of frontend requests, and transferring data with MongoDB.
+2. Navigate to the project directory:
+    ```bash
+    cd Hiking-Together
+    ```
 
+3. Set up environment variables in a `.env` file in the **`backend/`** directory. Use the following template:
+    ```
+    MONGO_URL=mongodb+srv://YOUR_MONGO_URL_HERE
+    SECRET=SECRET_KEY
+    SALT_ROUNDS=8
+    ```
+
+### Running the Project
+
+You can run the project either using Docker or using the scripts provided in the `package.json`.
+
+**Using Docker** (if you have Docker and Docker-Compose installed):
+1. Start the frontend and backend services using Docker Compose:
+    ```bash
+    docker-compose up -d
+    ```
+   
+2. Open your browser and navigate to `http://localhost:80` to view the frontend application.
+
+3. The backend API will be accessible at `http://localhost:5001`.
+
+**Using Yarn Scripts**:
+
+0. Modify `frontend/src/index.js:21`, replace the uri with `http://localhost:5001/`
+
+1. Install the frontend dependencies:
+    ```bash
+    cd frontend && yarn install
+    ```
+
+2. Install the backend dependencies:
+    ```bash
+    cd backend && yarn install
+    ```
+
+3. Start the frontend application:
+    ```bash
+    yarn start
+    ```
+
+4. In another terminal, start the backend service:
+    ```bash
+    yarn server
+    ```
+
+5. After starting both the frontend and backend, open your browser and navigate to `http://localhost:3000` to view the application.
+
+6. The backend API will be available at `http://localhost:5001`.
+
+### Test Cases
+There are test cases provided in `backend/src/testData.js`. To utilize these, navigate to `backend/src/mongo.js` and uncomment the `postInit(...);` line.
+
+After this step, remember to comment back `postInit(...);` to prevent resetting data on every launch. Reboot the frontend process with yarn start to view the test cases.
+
+#### Test User Credentials:
+For testing purposes, the following users can be utilized:
+- **Zaren**: 
+  - Email: zaren@gmail.com 
+  - Password: zarenzaren
+
+- **Mark**:
+  - Email: mark@gmail.com
+  - Password: markmark
+  
+- **David**:
+  - Email: david@gmail.com
+  - Password: daviddavid
+
+> **Note**: Each time the test cases are used to create a new user, the `userid` will differ. Ensure to sign out and sign back in to update the browser token with the new `userid`.
+
+## Tools Used
+
+#### **Backend**
+1. **Node.js**: The backend server runtime environment.
+2. **Apollo Server**: An open-source, spec-compliant GraphQL server.
+3. **bcryptjs**: A library to help hash passwords.
+4. **jsonwebtoken**: Implementation of JSON Web Tokens.
+5. **dotenv-defaults**: Loading and merging default .env variables.
+6. **mongoose**: ODM (Object Data Modeling) library for MongoDB and Node.js.
+
+#### **Frontend**
+1. **React**: A JavaScript library for building user interfaces.
+2. **Apollo Client**: State management library that enables interaction with GraphQL server.
+3. **i18next**: Internationalization-framework for translating the application.
+4. **moment**: A JavaScript library to parse, validate, manipulate, and display dates and times.
+5. **styled-components**: Tool to write CSS code for styling React components.
+
+#### **General**
+1. **Docker**: Used for containerizing the application ensuring consistency across different environments.
+2. **AWS EC2**: Deployed on AWS's Elastic Compute Cloud.
+
+## Structure
+
+### Backend
 <img src="https://i.imgur.com/olPuI7L.png" width="600" >
 
-##
-* index.js
-
-    Entry point of backend process, it will set up a connection with DB and run a server which is listening requests on 5001 port
-
-* server.js
-
-    Include most of the server configurations:graphql schema, resolvers, database model, JWT
-
-* mongo.js
-
-    Define the connection with Database
-    
-* models/index.js
-
-    Define the Schema of Database. We generate the Model of User and Post here
-    
-* resolvers/ *.js & schema.graphql
-
-    Define how graphql process data
-
-##
-### Framworks, plugins, modules
-#### graphql-yoga, bcryptjs(encrypt password), jsonwebtoken(user authentication), nodemon, mongoose, babel, dotenv-defaults
-#### 資料庫: MongoDB
-##
-
-### ref
-* #### JWT
-    * https://www.howtographql.com/graphql-js/6-authentication/
-    * https://ithelp.ithome.com.tw/articles/10205426
-* #### put environmental variables into `.env` ( like SECRET, SALT, etc. )
-    * https://ithelp.ithome.com.tw/articles/10205786
-
-## 4. Frontend Introduction
-#### Use React.js to build frontend pages, and use Apollo Client to communicate with graphql at backend server.
-##
-### Frontend file structure
+### Frontend
 ```
 frontend
 ├── public
@@ -147,28 +172,26 @@ frontend
 │   │   ├── useAuth.js
 │   │   ├── useDraft.js
 │   │   └── usePost.js
+│   ├── locales
+│   │   ├── en
+│   │   │   └── translation.js
+│   │   └── zh
+│   │   │   └── translation.js
 │   └── index.js
 ```
-##
-### Not signed in
-People can join and see posts posted by other people without logging in
+
+### Not Signed In
+
+User can browse posts posted by other users without logging into the platform
 
 <img src="https://i.imgur.com/CYpXdi1.png" width="600" >
 <img src="https://i.imgur.com/qAhWzVA.png">
 
-
-( * Support basic RWD )
+Support basic RWD
 
 <img src="https://i.imgur.com/CWB3fcT.png">
 
-### Sign in
-Sign in to use all features, including: post a hiking invitation, add post
-
-#### Sign in / Sign up panel
-
-<img src="https://i.imgur.com/ZHj2LDr.png">
-
-#### Main panel after sign in
+### After Signin
 
 <img src="https://i.imgur.com/KL94k0H.png" width="600" >
 
@@ -178,48 +201,10 @@ Sign in to use all features, including: post a hiking invitation, add post
 
 <img src="https://i.imgur.com/YShssuA.png" width="700">
 
-### Add post
+#### Add post
 
 <img src="https://i.imgur.com/j2zdjWU.png" width="600">
 
-### Modify & remove post
+#### Modify & remove post
 
 <img src="https://i.imgur.com/hwBpXkj.png" width="600">
-
-##
-### Framworks, plugins, modules
-#### Reactjs, Apollo Client, material ui, moment, styled-components
-##
-
-### ref
-* #### Chang chinese font
-    * [customization font](https://mui.com/customization/typography/)
-    * [mui theme provider](https://mui.com/customization/theming/#theme-provider)
-    * https://blog.greenroots.info/3-quick-ways-to-add-fonts-to-your-react-app
-    * [google font](https://fonts.google.com/noto/specimen/Noto+Serif+TC?subset=chinese-traditional)
-* #### client side useToken & localStorage
-    * https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications
-
-* #### use localstorage to store login info.
-    *  [How to add token header at client side](https://www.apollographql.com/docs/react/networking/authentication/)
-    * [How to store token into localstorage](https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications)
-    * [remove specific localstorage](https://stackoverflow.com/questions/7667958/clearing-localstorage-in-javascript)
-* #### Apollo Client query refetching
-    * https://www.apollographql.com/docs/react/data/queries/#refetching
-* #### material ui
-    * https://mui.com/
-* #### others
-    * Duplicate **hide/show password icon**：
-    <img src="https://i.imgur.com/ZLVPBjy.jpg" width=300 />
-    
-        Solution([stackoverflow](https://stackoverflow.com/questions/66703625/double-endadornments-when-using-self-defined-endadornment-in-material-ui-input)): Add following configuration into index.css
-
-        ``` css
-        input::-ms-reveal,
-        input::-ms-clear {
-          display: none;
-        }
-
-        ```
-    * [Disable CardActionArea ripple animation and onClick listener](https://stackoverflow.com/questions/61590919/material-ui-button-in-cardactionarea)
-    * [Let MUI Typography identify newline](https://github.com/mui-org/material-ui/issues/9189)

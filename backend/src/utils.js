@@ -35,6 +35,10 @@ const validateUser = async (password, user, SECRET) => {
 };
 
 const newPost = async (db, userId, post) => {
+    // post can't have id field, even the value is null
+    if (post.id === null) {
+        delete post.id;
+    }
     const newpost = await new db.Post(post).save();
     const author =  await getUserById(db, userId);
     // Add a post ref into User's post list

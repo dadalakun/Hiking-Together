@@ -51,8 +51,8 @@ const PostDetail = ({ visible, handleClose, removePost, updatePost, t,
                         + " ~ " + moment(post.endTime).format("YYYY-MM-DD")}
                 </Typography>
                 <Typography variant="h6">
-                    { t("label_people_have") + " : " + post.peopleOrigin + " 人 / " +
-                        t("label_people_need") + " : " + post.peopleWant + " 人"}
+                    { t("label_people_have") + " : " + post.peopleOrigin + " People / " +
+                        t("label_people_need") + " : " + post.peopleWant + " People"}
                 </Typography>
             </DialogContent>
             <DialogContent sx={{ maxHeight: "330px", overflow: "auto" }}>

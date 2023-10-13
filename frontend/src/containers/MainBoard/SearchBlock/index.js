@@ -43,7 +43,7 @@ const SearchBlock = ({ searchPost, setMessage, refetch }) => {
             } else {
                 await searchPost(searchBy, "");
             }
-            setMessage({ open: true, msg: "搜尋完成", type: "success" });
+            setMessage({ open: true, msg: "Search completed", type: "success" });
         } catch (e) {
             setMessage({ open: true, msg: e.message, type: "error" });
         }
