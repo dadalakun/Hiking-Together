@@ -7,10 +7,23 @@
 - [Structure](#Structure)
 
 ## Demo
+<img src="https://i.imgur.com/ByNxoou.png">
+
 Check out the live demo (Sign in to try all features):
 [**Hiking Together Live Demo**](http://3.143.106.247)
 
-<img src="https://i.imgur.com/ByNxoou.png">
+#### Test User:
+- **Zaren**: 
+  - Email: zaren@gmail.com 
+  - Password: zarenzaren
+
+- **Mark**:
+  - Email: mark@gmail.com
+  - Password: markmark
+  
+- **David**:
+  - Email: david@gmail.com
+  - Password: daviddavid
 
 ## Introduction
 
