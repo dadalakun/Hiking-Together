@@ -18,7 +18,7 @@ import './i18n';
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'http://backend-app:5001/',
+  uri: '/api/',
 });
 
 const authLink = setContext((_, { headers }) => {
