@@ -9,8 +9,8 @@
 ## Demo
 <img src="https://i.imgur.com/ByNxoou.png">
 
-Check out the live demo (The link is currently unavailable):
-[**Hiking Together Live Demo**](http://3.143.106.247)
+Check out the live demo:
+[**Hiking Together Live Demo**](http://3.142.47.2)
 
 #### Test User:
 - **Zaren**: 
