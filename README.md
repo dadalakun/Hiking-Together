@@ -10,7 +10,7 @@
 <img src="https://i.imgur.com/ByNxoou.png">
 
 Check out the live demo:
-[**Hiking Together Live Demo**](http://3.142.47.2)
+[**Hiking Together Live Demo**](http://52.14.164.170/)
 
 #### Test User:
 - **Zaren**: 
