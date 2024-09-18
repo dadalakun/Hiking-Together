@@ -9,7 +9,7 @@
 ## Demo
 <img src="https://i.imgur.com/ByNxoou.png">
 
-Check out the live demo:
+Check out the live demo (Currently, the link is not available because I have shut down the machine for cost considerations.):
 [**Hiking Together Live Demo**](http://52.14.164.170/)
 
 #### Test User:
